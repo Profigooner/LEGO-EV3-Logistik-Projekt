@@ -20,4 +20,20 @@
 - Programm starten
 
 ## Algorithmus/Implementation:
+### Wir unterscheiden 2 Status: 1) Der Roboter hat nichts im Hand. 2) Der Roboter hat einen Gegenstand im Hand 
+### Status 1) Der Roboter hat nichts im Hand
+- Er folgt die innere Seite der schwarzen Linie in Uhrzeigersinn und ein Timer wird gestellt
+- Wenn der Timer = 30 dann guckt der Roboter einmal nach rechtes abbiegen und guckt, ob die Farbe schon in der Array " Did " ist.
+- Wenn ja: Time zurückstellen zu 0 und weiter die Linie folgen
+- Wenn nein: Dann sucht den Gegenstand in der Farbfläche, sobald der Wert des Ultrashallsensors kleiner als ein Grenzwert ist(In diesem Programm 5cm). Diese Prozess wird in der Funktion " Pick the item " eingepackt
+
+### Status 2) Der Roboter hat einen Gegenstand im Hand
+- Er folget die schwarze Linie sobald er gelbe Signalfläche sieht
+- Dann biegt er links ab und dann unterscheidet, ob die Farbe zu der Farbe des Gegenstands passt.
+- Wenn ja: Wird dann die Funktion " Send the item " durchgeführt, indem der Roboter die farbige Linie folgt und dann den Gegenstand in der schwarzen Abstellfläche stellt. Dann wird die Farbe in der Array " Did " hinzugefügt und er fährt dann wider zurück zu der schwarzen Linie.
+- Wenn nein: Dann folgt der Roboter die schwarze Linie weiter
+- * Es gibt einen Speziellfall beim Rot, dazu gibt es auch eine Anpassung.
+ 
+### Das Ende des Programms
+- Wenn die Länge der Array " Did " größer als 2 ist, endet das Programm.
 - 
