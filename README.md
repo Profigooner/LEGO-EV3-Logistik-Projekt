@@ -1,55 +1,123 @@
 # LEGO-EV3-Logistik-Projekt
-## Overview
-- Projektname: LEGO EV3 Logistik Projekt
-- Autor: Chris Ren, Elias Rohfing
-- Platform: Scratch 2.0
-- Ziel: Der Roboter muss die farbige Container von 3 Farbflächen abnehmen und sie in dem richtigen Abstellfläche abstellen.
 
-## Robot Component
-### -Motoren
-- Großmotoren X2
-- Kleinmotor X1
-### -Sensoren
-- Farbsensor X1
-- Ultrashalsensor X1
-### -CPU
+## Overview
+- **Projektname:** LEGO EV3 Logistik Projekt  
+- **Autoren:** Chris Ren, Elias Rohfing  
+- **Plattform:** Scratch 2.0  
+- **Ziel:** Der Roboter soll farbige Container von drei Farbflächen aufnehmen und sie in die jeweils richtige Abstellfläche transportieren.
+
+## Roboterkomponenten
+
+### Motoren
+- 2 × Großmotor
+- 1 × Kleinmotor
+
+### Sensoren
+- 1 × Farbsensor
+- 1 × Ultraschallsensor
+
+### Zentraleinheit
 - EV3 Brick
 
-## Anleitung:
-- Stell den Roboter auf der inneren Seite der schwarzen Linie sodass der Roboter in Uhrzeigersinn fährt
-- Programm starten
+## Anleitung
+- Den Roboter auf der inneren Seite der schwarzen Linie platzieren, sodass er sich im Uhrzeigersinn bewegt.
+- Danach das Programm starten.
 
-## Algorithmus/Implementation:
-### Wir unterscheiden 2 Status: 1) Der Roboter hat nichts im Hand. 2) Der Roboter hat einen Gegenstand im Hand 
-### Status 1) Der Roboter hat nichts im Hand
-- Er folgt die innere Seite der schwarzen Linie in Uhrzeigersinn und ein Timer wird gestellt
-- Wenn der Timer = 30 dann guckt der Roboter einmal nach rechtes abbiegen und guckt, ob die Farbe schon in der Array " Did " ist.
-- Wenn ja: Time zurückstellen zu 0 und weiter die Linie folgen
-- Wenn nein: Dann sucht den Gegenstand in der Farbfläche, sobald der Wert des Ultrashallsensors kleiner als ein Grenzwert ist(In diesem Programm 5cm). Diese Prozess wird in der Funktion " Pick the item " eingepackt
+## Algorithmus / Implementierung
 
-### Status 2) Der Roboter hat einen Gegenstand im Hand
-- Er folget die schwarze Linie sobald er gelbe Signalfläche sieht
-- Dann biegt er links ab und dann unterscheidet, ob die Farbe zu der Farbe des Gegenstands passt.
-- Wenn ja: Wird dann die Funktion " Send the item " durchgeführt, indem der Roboter die farbige Linie folgt und dann den Gegenstand in der schwarzen Abstellfläche stellt. Dann wird die Farbe in der Array " Did " hinzugefügt und er fährt dann wider zurück zu der schwarzen Linie.
-- Wenn nein: Dann folgt der Roboter die schwarze Linie weiter
-- * Es gibt einen Speziellfall beim Rot, dazu gibt es auch eine Anpassung.
- 
-### Das Ende des Programms
-- Wenn die Länge der Array " Did " größer als 2 ist, endet das Programm.
+Der Algorithmus basiert auf einem Zustandsmodell mit zwei Hauptzuständen.
 
-## Name der Variablen & Array
-### Diese folgenden Variablen bzw. Array spielen eine wichtige Rolle in dem Programm
-- Color left on the ground: Int, Die Farbe rechts auf der Farbfläche, wird durch die Funktion "Detect the color left" gemesst
-- Color of item in hand: Int, Die Farbe des Gegenstands im Hand, wird durch die Nummer notiert
-- item in hand: Bool, ob es Gegenstand im Hand gibt
-- Did(Array): Die Gegenstände die schon geliefert werden.
+### Zustand 1: Kein Gegenstand in der Hand
+Der Roboter folgt der inneren Seite der schwarzen Linie im Uhrzeigersinn.
 
-## Die Funktionen
-- Detect the color left: Schreibt die Farbe auf der rechten Fläche in Variable "Color left on the ground"
-- Follow the Line: Die standard Programm folgen die Linie
-- Follow the Line with Color "Color": Folge die Linie in Farbe "Color"
-- if "Gegenstand" in Array Did: Ein Algorithmus wird durchgeführt umzu unterscheiden ob "Gegenstand" in Array Did ist
+- Dabei läuft ein Timer mit.
+- Wenn der Timer den Wert 30 erreicht:
+  - überprüft der Roboter eine Abzweigung nach rechts.
+  - Anschließend wird kontrolliert, ob die erkannte Farbe bereits im Array **„Did“** gespeichert ist.
+
+#### Falls die Farbe bereits verarbeitet wurde:
+- Der Timer wird auf 0 zurückgesetzt.
+- Der Roboter folgt weiter der schwarzen Linie.
+
+#### Falls die Farbe noch nicht verarbeitet wurde:
+- Der Roboter fährt in die entsprechende Farbfläche.
+- Mit Hilfe des Ultraschallsensors wird überprüft, ob sich ein Gegenstand vor ihm befindet.
+- Sobald der gemessene Abstand kleiner als ein festgelegter Grenzwert ist (in diesem Programm: 5 cm), wird die Funktion **„Pick the item“** ausgeführt.
+
+### Zustand 2: Gegenstand in der Hand
+Sobald der Roboter einen Gegenstand aufgenommen hat, folgt er weiterhin der schwarzen Linie.
+
+- Wenn er eine gelbe Signalfläche erkennt:
+  - biegt er nach links ab.
+  - Danach überprüft er, ob die erkannte Zielfarbe zur Farbe des Gegenstands in seiner Hand passt.
+
+#### Falls die Farbe übereinstimmt:
+- Die Funktion **„Send the item“** wird ausgeführt.
+- Dabei folgt der Roboter der farbigen Linie bis zur passenden Abstellfläche.
+- Dort legt er den Gegenstand ab.
+- Anschließend wird die Farbe in das Array **„Did“** eingetragen.
+- Danach fährt der Roboter zurück zur schwarzen Hauptlinie.
+
+#### Falls die Farbe nicht übereinstimmt:
+- Der Roboter folgt weiter der schwarzen Linie, bis die passende Zielmarkierung gefunden wird.
+
+### Sonderfall
+- Für die rote Farbe gibt es einen speziellen Fall, der im Programm gesondert behandelt wird.
+
+### Ende des Programms
+- Wenn die Länge des Arrays **„Did“** größer als 2 ist, endet das Programm, da alle drei Farben bereits verarbeitet wurden.
+
+## Variablen und Arrays
+
+Die folgenden Variablen und Arrays spielen im Programm eine wichtige Rolle:
+
+- **Color left on the ground** (`Int`)  
+  Speichert die Farbe der rechten Farbfläche.  
+  Der Wert wird durch die Funktion **„Detect the color left“** ermittelt.
+
+- **Color of item in hand** (`Int`)  
+  Speichert die Farbe des Gegenstands, den der Roboter aktuell in der Hand hält.
+
+- **item in hand** (`Bool`)  
+  Gibt an, ob der Roboter momentan einen Gegenstand aufgenommen hat.
+
+- **Did** (`Array`)  
+  Speichert die Farben der Gegenstände, die bereits erfolgreich transportiert wurden.
+
+## Funktionen
+
+- **Detect the color left**  
+  Erkennt die Farbe auf der rechten Fläche und speichert sie in der Variable **„Color left on the ground“**.
+
+- **Follow the Line**  
+  Standardfunktion zum Folgen der schwarzen Linie.
+
+- **Follow the Line with Color "Color"**  
+  Lässt den Roboter einer bestimmten farbigen Linie folgen.
+
+- **if "Gegenstand" in Array Did**  
+  Überprüft, ob ein bestimmter Gegenstand bzw. eine bestimmte Farbe bereits im Array **„Did“** enthalten ist.
+
+- **Pick the item**  
+  Steuert das Aufnehmen eines Gegenstands.
+
+- **Send the item**  
+  Steuert den Transport und das Ablegen des Gegenstands in der passenden Abstellfläche.
+
+## Designentscheidungen
+- Das Array **„Did“** verhindert, dass dieselbe Farbe mehrfach bearbeitet wird.
+- Der Timer sorgt dafür, dass der Roboter nicht dauerhaft jede Abzweigung überprüft, sondern in festen Abständen.
+- Das Zustandsmodell macht den Programmablauf übersichtlicher und leichter erweiterbar.
+
+## Probleme und Verbesserungsmöglichkeiten
+- Der Ultraschallsensor kann ungenaue Messwerte liefern.
+- Die Farberkennung kann durch Lichtverhältnisse beeinflusst werden.
+- Mögliche Verbesserungen:
+  - Einsatz eines zweiten Farbsensors
+  - Anpassung der Schwellenwerte an verschiedene Umgebungen
+  - Optimierung der Fahrgeschwindigkeit in Kurven
 
 ## Schlusswort
-- ....
-  
+Insgesamt konnte mit dem LEGO EV3 ein funktionierendes Logistiksystem entwickelt werden.  
+Das Projekt zeigt, wie durch den Einsatz von Sensoren, Variablen, Arrays und Zustandslogik auch komplexere Transportaufgaben gelöst werden können.  
+In Zukunft könnte das System durch zusätzliche Sensoren und weitere Optimierungen noch zuverlässiger und effizienter arbeiten.
