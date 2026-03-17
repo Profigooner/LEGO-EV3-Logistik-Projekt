@@ -110,12 +110,9 @@ Die folgenden Variablen und Arrays spielen im Programm eine wichtige Rolle:
 - Das Zustandsmodell macht den Programmablauf übersichtlicher und leichter erweiterbar.
 
 ## Probleme und Verbesserungsmöglichkeiten
-- Der Ultraschallsensor kann ungenaue Messwerte liefern.
-- Die Farberkennung kann durch Lichtverhältnisse beeinflusst werden.
+- Beim Rot funktionerte den Programm nicht 
 - Mögliche Verbesserungen:
-  - Einsatz eines zweiten Farbsensors
-  - Anpassung der Schwellenwerte an verschiedene Umgebungen
-  - Optimierung der Fahrgeschwindigkeit in Kurven
+  - Genauere Such-Algorithmus nach einem Gegenstand (Vielleicht wie ein Radar?)
 
 ## Schlusswort
 Insgesamt konnte mit dem LEGO EV3 ein funktionierendes Logistiksystem entwickelt werden.  
