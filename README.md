@@ -5,6 +5,7 @@
 - **Autoren:** Chris Ren, Elias Rohfing  
 - **Plattform:** Scratch 2.0  
 - **Ziel:** Der Roboter soll farbige Container von drei Farbflächen aufnehmen und sie in die jeweils richtige Abstellfläche transportieren.
+- **Fotos des Programms** Die Fotos sind unter /images/ gespeichert
 
 ## Roboterkomponenten
 
