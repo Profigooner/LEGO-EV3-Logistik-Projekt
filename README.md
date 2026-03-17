@@ -36,4 +36,20 @@
  
 ### Das Ende des Programms
 - Wenn die Länge der Array " Did " größer als 2 ist, endet das Programm.
-- 
+
+## Name der Variablen & Array
+### Diese folgenden Variablen bzw. Array spielen eine wichtige Rolle in dem Programm
+- Color left on the ground: Int, Die Farbe rechts auf der Farbfläche, wird durch die Funktion "Detect the color left" gemesst
+- Color of item in hand: Int, Die Farbe des Gegenstands im Hand, wird durch die Nummer notiert
+- item in hand: Bool, ob es Gegenstand im Hand gibt
+- Did(Array): Die Gegenstände die schon geliefert werden.
+
+## Die Funktionen
+- Detect the color left: Schreibt die Farbe auf der rechten Fläche in Variable "Color left on the ground"
+- Follow the Line: Die standard Programm folgen die Linie
+- Follow the Line with Color "Color": Folge die Linie in Farbe "Color"
+- if "Gegenstand" in Array Did: Ein Algorithmus wird durchgeführt umzu unterscheiden ob "Gegenstand" in Array Did ist
+
+## Schlusswort
+- ....
+  
